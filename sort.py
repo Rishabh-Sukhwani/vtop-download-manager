@@ -40,7 +40,7 @@ def sort_by_date(semesters, semester_keys):
                             i+=1
                             extension = extract_extension(material)
                             #print(f"{i}: "+extract_name(material) + "| " + date + " | " + subject)
-                            new_name = f"0{i}- "+extract_name(material) + " - " + date + " - " + subject + extension
+                            new_name = f"0{i}- "+extract_name(material) + " - " + date + " " + extract_name(material) + " - " + subject + extension
                             source_path = os.path.join(os.getcwd(), material)
                             #print(source_path)
                             destination_path = os.path.join(os.getcwd(), new_name)
