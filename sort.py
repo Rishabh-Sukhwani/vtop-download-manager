@@ -25,28 +25,29 @@ def sort_by_date(semesters, semester_keys):
             for material in materials_in_subject_folder:
                 dates.append(find_date(material))
                 names.append(extract_name(material))
-            
-            #print(dates)
 
             dates.sort(key=lambda date: datetime.strptime(date, r"%d-%m-%Y"))
-            #print("Sorted datelist: ", dates)
 
-            #print(names)
             i=0
             for date in dates:
                 for material in materials_in_subject_folder:
                     if (find_date(material)==date):
                         try:
+                            #start serializing index
                             i+=1
                             extension = extract_extension(material)
-                            #print(f"{i}: "+extract_name(material) + "| " + date + " | " + subject)
+                            
+                            #set the new name for the file
                             new_name = f"0{i}- "+extract_name(material) + " - " + date + " " + extract_name(material) + " - " + subject + extension
+                            
+                            #set source and destination file path to rename
                             source_path = os.path.join(os.getcwd(), material)
-                            #print(source_path)
                             destination_path = os.path.join(os.getcwd(), new_name)
+                            
+                            #to make sure the process is not being used
                             materials_in_subject_folder.remove(material)
-                            #print(destination_path)
-                            #print(source_path + " | " + destination_path)
+                            
+                            #rename the file
                             os.rename(source_path, destination_path)
                         except FileExistsError:
                             pass
