@@ -51,6 +51,8 @@ def sort_by_date(semesters, semester_keys):
                             os.rename(source_path, destination_path)
                         except FileExistsError:
                             pass
+                        except OSError:
+                            pass
                         break
 
             os.chdir(second_level_dir)

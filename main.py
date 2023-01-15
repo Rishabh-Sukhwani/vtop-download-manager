@@ -6,7 +6,7 @@ import sort
 
 
 #go to the folder where material is downloaded to
-os.chdir(r'C:\Users\your-user-name-on-pc\Downloads')
+os.chdir(r'C:\Users\risha\Downloads')
 
 all_files = os.listdir()
 
