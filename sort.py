@@ -1,4 +1,5 @@
 import os
+import sys
 from datetime import datetime
 from utils.extract_extension import extract_extension
 from utils.extract_name import extract_name
@@ -60,9 +61,15 @@ def sort_by_date(semesters, semester_keys):
                             #set source and destination file path to rename
                             source_path = os.path.join(os.getcwd(), material)
                             destination_path = os.path.join(os.getcwd(), new_name)
-                                
+
                             #rename the file
                             os.rename(source_path, destination_path)
+                        except PermissionError:
+                            print("Please close all files that are in any of the semester folders")
+                            sys.exit()
+                        except:
+                            print("An exception occured")
+
                         break
 
             os.chdir(second_level_dir)
