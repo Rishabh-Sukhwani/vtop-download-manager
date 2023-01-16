@@ -52,7 +52,17 @@ def sort_by_date(semesters, semester_keys):
                         except FileExistsError:
                             pass
                         except OSError:
-                            pass
+                            #fix name for when it gets too long and gives error
+                            fixed_name = extract_name(material)[:30]
+                            #print(fixed_name)
+                            new_name = f"0{i}- "+fixed_name + " - " + date + " " + fixed_name + " - " + subject + extension
+                                
+                            #set source and destination file path to rename
+                            source_path = os.path.join(os.getcwd(), material)
+                            destination_path = os.path.join(os.getcwd(), new_name)
+                                
+                            #rename the file
+                            os.rename(source_path, destination_path)
                         break
 
             os.chdir(second_level_dir)
